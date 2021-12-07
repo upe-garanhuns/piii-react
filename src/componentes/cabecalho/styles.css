@@ -1,0 +1,35 @@
+.cabecalho {
+  grid-area: 'menu';
+  display: flex;
+  width: 100%;
+}
+
+.container-titulo {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.container-menu {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+div > h1 {
+  display: block;
+  align-items: flex-end;
+  color: #aacf38;
+  font-size: 1.8rem;
+}
+
+div > button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.icone-menu {
+  width: 40px;
+  height: 40px;
+}

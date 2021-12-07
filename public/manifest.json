@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Gerador de Senhas",
+  "name": "Aplicativo gerador de senhas utilizado na disciplina Programação-III do curso de Licenciatura em Computação da UPE/Campus Garanhuns",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,0 +1,45 @@
+.rodape {
+  align-self: end;
+  grid-area: 'rodape';
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 64px;
+  color: #aacf3854;
+}
+
+.rodape-container {
+  display: flex;
+  flex-direction: row;
+  position: center;
+  top: 13px;
+  left: 16px;
+  align-items: center;
+  width: 100%;
+}
+.titulo-rodape-container {
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+.logo-container {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+.upe-logo {
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+}
+
+.multicampi-logo {
+  width: 30px;
+  height: 30px;
+  padding-left: 4px;
+  opacity: 0.8;
+}
