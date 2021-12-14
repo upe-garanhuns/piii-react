@@ -1,9 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import cadeado from '../../imagens/cadeado.png';
 import { ReactComponent as Gerar } from '../../imagens/gerar.svg';
 
 const PainelConfiguracao = function () {
+  const [configuracao, setConfiguracao] = useState({
+    tamanho: 8,
+    maiuscula: false,
+    minuscula: false,
+    numeros: false,
+    especial: false,
+  });
+
+  const [senha, setSenha] = useState('gOPsIMXnlPPlCsl');
+
+  // chamar backend
+  useEffect(() => {
+    setSenha('gOPsIMXnlPPlCsl');
+  }, [configuracao]);
+
+  const handleChangeTamanho = (valor) => {
+    setConfiguracao((configAnterior) => ({
+      ...configAnterior,
+      tamanho: parseInt(valor, 10),
+    }));
+  };
+
+  const handleChangeMaiuscula = (valor) => {
+    setConfiguracao((configAnterior) => ({
+      ...configAnterior,
+      maiuscula: valor,
+    }));
+  };
+
+  const handleChangeMinuscula = (valor) => {
+    setConfiguracao((configAnterior) => ({
+      ...configAnterior,
+      minuscula: valor,
+    }));
+  };
+
+  const handleChangeNumeros = (valor) => {
+    setConfiguracao((configAnterior) => ({
+      ...configAnterior,
+      numeros: valor,
+    }));
+  };
+
+  const handleChangeEspecial = (valor) => {
+    setConfiguracao((configAnterior) => ({
+      ...configAnterior,
+      especial: valor,
+    }));
+  };
+
   return (
     <div className="gerador-container">
       <div className="imagem-cadeado-container">
@@ -11,7 +61,7 @@ const PainelConfiguracao = function () {
       </div>
       <div className="componentes">
         <div className="input">
-          <div className="senha">gOPsIMXnlPPlCsl</div>
+          <div className="senha">{senha}</div>
           <span className="classificacao classificacao-lg muito-forte">
             muito forte
           </span>
@@ -29,11 +79,17 @@ const PainelConfiguracao = function () {
         <div className="ajustes">
           <div className="tamanho">
             <span className="tamanho-label">Tamanho da senha:</span>
-            <span className="tamanho-definido">15</span>
+            <span className="tamanho-definido">{configuracao.tamanho}</span>
             <button type="button" className="btn-senha">
               -
             </button>
-            <input type="range" min="4" max="64" />
+            <input
+              type="range"
+              min={4}
+              max={64}
+              value={configuracao.tamanho}
+              onChange={(e) => handleChangeTamanho(e.target.value)}
+            />
             <button type="button" className="btn-senha">
               +
             </button>
@@ -48,6 +104,8 @@ const PainelConfiguracao = function () {
                     type="checkbox"
                     id="maiuscula"
                     className="item-opcao"
+                    value={configuracao.maiuscula}
+                    onChange={(e) => handleChangeMaiuscula(e.target.checked)}
                   />
                 </label>
               </div>
@@ -57,13 +115,21 @@ const PainelConfiguracao = function () {
                     type="checkbox"
                     id="minuscula"
                     className="item-opcao"
+                    value={configuracao.minuscula}
+                    onChange={(e) => handleChangeMinuscula(e.target.checked)}
                   />
                   abc
                 </label>
               </div>
               <div className="check-opcao">
                 <label htmlFor="numeros" className="item-opcao-label">
-                  <input type="checkbox" id="numeros" className="item-opcao" />
+                  <input
+                    type="checkbox"
+                    id="numeros"
+                    className="item-opcao"
+                    value={configuracao.numeros}
+                    onChange={(e) => handleChangeNumeros(e.target.checked)}
+                  />
                   123
                 </label>
               </div>
@@ -73,6 +139,8 @@ const PainelConfiguracao = function () {
                     type="checkbox"
                     id="especiais"
                     className="item-opcao"
+                    value={configuracao.especiais}
+                    onChange={(e) => handleChangeEspecial(e.target.checked)}
                   />
                   !@#$%*()_+
                 </label>
