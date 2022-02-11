@@ -4,20 +4,15 @@ import cadeado from '../../imagens/cadeado.png';
 import { ReactComponent as Gerar } from '../../imagens/gerar.svg';
 
 const PainelConfiguracao = function () {
+  const [senha, setSenha] = useState('');
+
   const [configuracao, setConfiguracao] = useState({
     tamanho: 8,
     maiuscula: false,
     minuscula: false,
     numeros: false,
-    especial: false,
+    especiais: false,
   });
-
-  const [senha, setSenha] = useState('gOPsIMXnlPPlCsl');
-
-  // chamar backend
-  useEffect(() => {
-    setSenha('gOPsIMXnlPPlCsl');
-  }, [configuracao]);
 
   const handleChangeTamanho = (valor) => {
     setConfiguracao((configAnterior) => ({
@@ -47,12 +42,31 @@ const PainelConfiguracao = function () {
     }));
   };
 
-  const handleChangeEspecial = (valor) => {
+  const handleChangeEspeciais = (valor) => {
     setConfiguracao((configAnterior) => ({
       ...configAnterior,
-      especial: valor,
+      especiais: valor,
     }));
   };
+
+  const handleGerarSenha = () => {
+    const parametros = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      cache: 'default',
+      body: JSON.stringify(configuracao),
+    };
+
+    fetch('http://localhost:8080/api/v1/senhas', parametros)
+      .then((retorno) => retorno.text())
+      .then((senhaGerada) => setSenha(senhaGerada));
+  };
+
+  useEffect(() => handleGerarSenha, [configuracao]);
 
   return (
     <div className="gerador-container">
@@ -85,7 +99,7 @@ const PainelConfiguracao = function () {
             </button>
             <input
               type="range"
-              min={4}
+              min={8}
               max={64}
               value={configuracao.tamanho}
               onChange={(e) => handleChangeTamanho(e.target.value)}
@@ -140,7 +154,7 @@ const PainelConfiguracao = function () {
                     id="especiais"
                     className="item-opcao"
                     value={configuracao.especiais}
-                    onChange={(e) => handleChangeEspecial(e.target.checked)}
+                    onChange={(e) => handleChangeEspeciais(e.target.checked)}
                   />
                   !@#$%*()_+
                 </label>
