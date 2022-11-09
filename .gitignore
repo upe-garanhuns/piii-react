@@ -1,2 +1,4 @@
 node_modules/
+node_modules/*
 .eslintintcache
+package-lock.json
