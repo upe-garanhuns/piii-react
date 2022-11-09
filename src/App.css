@@ -16,13 +16,13 @@
 
 .container-titulo {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   width: 50%;
 }
 
 .container-menu {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   width: 50%;
 }
 
@@ -346,14 +346,14 @@ input[type="checkbox" i] {
 .titulo-rodape-container {
   display: flex;
   width: 50%;
-  justify-content: start;
+  justify-content: flex-start;
   font-weight: bold;
 }
 
 .logo-container {
   display: flex;
   width: 50%;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .upe-logo {
